@@ -1,7 +1,7 @@
 # DVA338 - Ray Tracer
 
 This is a code skeleton for the ray tracer assignment given as part of the course Fundamentals of Computer Graphics - DVA338 at Mälardalen University.
-
+###Addition-> As a student of this course, I completed the task given with object oriented approach.
 ## Building the project
 
 The project is created in C++ and is provided as a set of header and source files.
