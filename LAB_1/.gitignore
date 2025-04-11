@@ -1,0 +1,8 @@
+.vscode/
+Main.dSYM/
+Main
+*.ppm
+*.bmp
+cmakebuild/
+build/
+.DS_Store

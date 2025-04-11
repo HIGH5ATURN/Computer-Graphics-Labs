@@ -1,0 +1,59 @@
+#ifndef _RayTracer_H_
+#define _RayTracer_H_
+
+#include "Scene.h"
+#include "Image.h"
+#include "Ray.h"
+#include "Sphere.h"
+
+class RayTracer {
+private: 
+	Scene * scene;
+	Image * image;
+    Vec3f bgColor;
+    Vec3f bgColor2;
+public:
+    RayTracer(const int w, const int h) {
+        this->scene = new Scene();
+        this->image = new Image(w, h);
+        this->bgColor = Vec3f(0.69f, 0.69f, 0.69f);
+        this->bgColor2= Vec3f(0.06f, 0.06f, 0.2f);
+    }
+    ~RayTracer() {
+        delete scene;
+        delete image;
+    }
+    void searchClosestHit(const Ray & ray, HitRec & hitRec);
+	Vec3f getEyeRayDirection(int x, int y);
+    void fireRays();
+
+    //--calculating the colors
+    Vec3f computeLightColor(const Ray& ray, HitRec& hitRec, const Light* light);
+    
+
+
+
+    void toPPM(const char* path) {
+        this->image->toPPM(path);
+    };
+    void toBMP(const char* path) {
+        this->image->toBMP(path);
+    };
+    void addSphere(const Vec3f & c, const float r, const Material* mat) {
+        if (r >= 0) {
+            this->scene->addSphere(c, r, mat);
+        }
+       
+    };
+
+    void addLight(const Vec3f& pos, const Vec3f& ambient,const Vec3f& diffuse, const Vec3f& specular) {
+
+        this->scene->addLight(pos, ambient, diffuse, specular);
+    };
+
+    void addPlane(const Vec3f& pt, const Vec3f& n, const Material* mat) {
+        this->scene->addPlane(pt,  n,  mat);
+    }
+};
+
+#endif
