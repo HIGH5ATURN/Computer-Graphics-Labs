@@ -13,8 +13,9 @@ RayTracer* initTracer(int width, int height)
 		Vec3f(0.1f, 0.6f, 0.1f),   // diffuse
 		Vec3f(0.6f, 0.6f, 0.6f),   // specular
 		5000.0f,//shineness
-		0.5f//reflectivity
-	));
+		0.5f,//reflectivity
+		0.05f //fuzziness
+		));
 
 	//RED
 	rayTracer->addSphere(Vec3f(0.0f, -0.05f, -10.0f), 1.0f, new Material(
@@ -23,7 +24,6 @@ RayTracer* initTracer(int width, int height)
 		Vec3f(0.06f, 0.06f, 0.06f),   // specular
 		4000.0f,                  // shininess
 		0.5f
-
 	));
 
 

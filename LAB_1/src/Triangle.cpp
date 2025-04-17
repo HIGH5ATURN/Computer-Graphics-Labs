@@ -9,6 +9,7 @@ bool Triangle::hit(const Ray& r, HitRec& rec) const {
     float D = -(normal.dot(v0));
     float t = -(D + normal.dot(r.o)) / denom;
 
+    
     if (t < 1e-4 || t >= r.tClip) return false;
 
     Vec3f p = r.o + r.d * t;

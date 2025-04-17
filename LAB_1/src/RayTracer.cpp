@@ -88,10 +88,19 @@ Vec3f RayTracer::traceRay(const Ray& ray, int depth) {
 
             Vec3f N = hitRec.n;
             Vec3f reflectionDir = ray.d - N*( 2.0f * (ray.d.dot(N)));
-            Ray reflectionRay(hitRec.p + N * Ray::rayEps, reflectionDir.normalize());
+            
+            
+            // Applying fuzziness
+            float fuzz = hitRec.material->fuzziness;
+            if (fuzz > 0.0f) {   
+                Vec3f randomVec = RayTracer::randomInUnitSphere(); 
+                reflectionDir = (reflectionDir + randomVec * fuzz).normalize();
+            }
+
+
+            Ray reflectionRay(hitRec.p + N * Ray::rayEps, reflectionDir);
 
             // Create reflection ray with small offset to avoid self-intersection
-
 
              reflectedColor = traceRay(reflectionRay, depth - 1);
 
@@ -174,4 +183,5 @@ Vec3f RayTracer::computeLightColor(const Ray& ray, HitRec& hitRec, const Light* 
 
     return localColor;
 }
+
 

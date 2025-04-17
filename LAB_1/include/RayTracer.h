@@ -61,6 +61,17 @@ public:
        
         this->scene->addTriangle(a, b, c, mat);
     }
+
+     Vec3f randomInUnitSphere() {
+        while (true) {
+            Vec3f p(
+                ((float)rand() / RAND_MAX) * 2.0f - 1.0f,
+                ((float)rand() / RAND_MAX) * 2.0f - 1.0f,
+                ((float)rand() / RAND_MAX) * 2.0f - 1.0f
+            );
+            if (p.lenSq() < 1.0f) return p;
+        }
+    }
 };
 
 #endif
