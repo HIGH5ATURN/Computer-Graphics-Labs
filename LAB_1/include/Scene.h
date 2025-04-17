@@ -6,6 +6,7 @@ using namespace std;
 #include "Sphere.h"
 #include "Light.h"
 #include "Plane.h"
+#include "Triangle.h"
 class Scene {
 private:
 
@@ -32,6 +33,12 @@ public:
 		Plane* plane = new Plane(pt, n, mat);
 		objects.push_back(plane);
 	}
+
+	void addTriangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat) {
+		Triangle* triangle = new Triangle(a, b, c, mat);
+		objects.push_back(triangle);
+	}
+
 
 	void clear()
 	{

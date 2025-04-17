@@ -3,7 +3,44 @@
   "WorkspaceRootPath": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|CMake Overview Pages||{B1CAA5B0-FEB1-4350-8AB9-F895876842F2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Triangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Triangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Plane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Plane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\raytrace_features.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\raytrace_features.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\RayTracer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\RayTracer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\Triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Object.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\Object.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\RayTracer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\RayTracer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Plane.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\Plane.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,16 +50,136 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "raytrace_features.h",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\raytrace_features.h",
+              "RelativeDocumentMoniker": "include\\raytrace_features.h",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\raytrace_features.h",
+              "RelativeToolTip": "include\\raytrace_features.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-17T22:11:23.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Main.cpp",
+              "RelativeDocumentMoniker": "src\\Main.cpp",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Main.cpp",
+              "RelativeToolTip": "src\\Main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-17T21:58:12.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CMake Overview Pages",
-              "DocumentMoniker": "CMake Overview Pages",
-              "ToolTip": "CMake Overview Pages",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-11T21:09:18.945Z",
+              "Title": "Triangle.cpp",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Triangle.cpp",
+              "RelativeDocumentMoniker": "src\\Triangle.cpp",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Triangle.cpp",
+              "RelativeToolTip": "src\\Triangle.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-17T21:31:51.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Scene.h",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Scene.h",
+              "RelativeDocumentMoniker": "include\\Scene.h",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Scene.h",
+              "RelativeToolTip": "include\\Scene.h",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-17T21:54:14.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RayTracer.cpp",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\RayTracer.cpp",
+              "RelativeDocumentMoniker": "src\\RayTracer.cpp",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\RayTracer.cpp",
+              "RelativeToolTip": "src\\RayTracer.cpp",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAAUAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-17T21:52:27.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Plane.h",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Plane.h",
+              "RelativeDocumentMoniker": "include\\Plane.h",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Plane.h",
+              "RelativeToolTip": "include\\Plane.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-17T21:48:08.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Object.h",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Object.h",
+              "RelativeDocumentMoniker": "include\\Object.h",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Object.h",
+              "RelativeToolTip": "include\\Object.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-17T21:49:54.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Triangle.h",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Triangle.h",
+              "RelativeDocumentMoniker": "include\\Triangle.h",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\Triangle.h",
+              "RelativeToolTip": "include\\Triangle.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-17T21:30:42.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RayTracer.h",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\RayTracer.h",
+              "RelativeDocumentMoniker": "include\\RayTracer.h",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\include\\RayTracer.h",
+              "RelativeToolTip": "include\\RayTracer.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-17T20:57:19.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Plane.cpp",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Plane.cpp",
+              "RelativeDocumentMoniker": "src\\Plane.cpp",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\Computer-Graphics-Labs\\LAB_1\\src\\Plane.cpp",
+              "RelativeToolTip": "src\\Plane.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-17T21:27:08.459Z",
               "EditorCaption": ""
             }
           ]

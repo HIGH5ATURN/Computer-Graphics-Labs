@@ -16,7 +16,9 @@ public:
     RayTracer(const int w, const int h) {
         this->scene = new Scene();
         this->image = new Image(w, h);
-        this->bgColor = Vec3f(0.69f, 0.69f, 0.69f);
+       /* this->bgColor = Vec3f(0.69f, 0.69f, 0.69f);*/
+
+        this->bgColor = Vec3f(0.0627f, 0.0706f, 0.0941f);
         this->bgColor2= Vec3f(0.06f, 0.06f, 0.2f);
     }
     ~RayTracer() {
@@ -26,9 +28,9 @@ public:
     void searchClosestHit(const Ray & ray, HitRec & hitRec);
 	Vec3f getEyeRayDirection(int x, int y);
     void fireRays();
-
+    Vec3f traceRay(const Ray& ray, int depth);
     //--calculating the colors
-    Vec3f computeLightColor(const Ray& ray, HitRec& hitRec, const Light* light);
+    Vec3f computeLightColor(const Ray& ray, HitRec& hitRec, const Light* light,bool &shadow);
     
 
 
@@ -53,6 +55,11 @@ public:
 
     void addPlane(const Vec3f& pt, const Vec3f& n, const Material* mat) {
         this->scene->addPlane(pt,  n,  mat);
+    }
+
+    void addTriangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat) {
+       
+        this->scene->addTriangle(a, b, c, mat);
     }
 };
 

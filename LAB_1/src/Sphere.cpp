@@ -15,7 +15,7 @@ bool Sphere::hit(const Ray& r, HitRec& rec) const {
 		return false;
 	}
 
-	float sqrtDet = static_cast<float>(sqrt(det));
+	float sqrtDet = sqrtf(det);
 	float t1 = (-B + sqrtDet) / 2.0f;
 
 	float t2 = (-B - sqrtDet) / 2.0f;
@@ -36,11 +36,9 @@ bool Sphere::hit(const Ray& r, HitRec& rec) const {
 		return false;
 	}
 	rec.tHit = valid_t;
+
+
 	rec.anyHit = true;
-
-	rec.material=Sphere::getMaterial();
-
-	Sphere::computeSurfaceHitFields(r, rec);
 
 	return true;
 }

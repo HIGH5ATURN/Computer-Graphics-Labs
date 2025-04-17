@@ -24,7 +24,7 @@
 
 /// Then we define which scene we want to render
 /// Replace the SCENE_* value with the scene you want to render from the values above
-#define SCENE SCENE_SHADOWS_DARKNESS
+#define SCENE SCENE_TRIANGLES
 
 // Finally, each scene will enable a set of features
 #if SCENE == SCENE_AMBIENT_ONLY
@@ -53,6 +53,7 @@
 #define SPECULAR_LIGHTING
 #define SHADOWS_AMBIENT
 #define REFLECTIONS
+#define TRANSPARENCY
 #elif SCENE == SCENE_TRIANGLES
 #define AMBIENT_LIGHTING
 #define DIFFUSE_LIGHTING

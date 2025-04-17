@@ -5,6 +5,9 @@
 #include "Ray.h"
 #include "Object.h"
 #include "Material.h"
+
+
+
 class Sphere : public Object {
 public:
 Vec3f c;
@@ -17,7 +20,7 @@ public:
 	} 
 	bool hit(const Ray & r, HitRec & rec) const;
     
-	const Material* getMaterial() const;
+	const Material* getMaterial() const ;
 
 	void computeSurfaceHitFields(const Ray & r, HitRec & rec) const;
 

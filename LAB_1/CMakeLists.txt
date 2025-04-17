@@ -11,20 +11,20 @@ include_directories("${PROJECT_SOURCE_DIR}/include"
     "${PROJECT_SOURCE_DIR}/external_dependencies/libbmp")
 
 # The project is built as a set of libraries that are linked together
-add_library(Ray "${PROJECT_SOURCE_DIR}/src/Ray.cpp" "include/Light.h" "include/Material.h" "include/Plane.h")
+add_library(Ray "${PROJECT_SOURCE_DIR}/src/Ray.cpp" "include/Light.h" "include/Material.h" "include/Plane.h" "src/Plane.cpp" "include/Triangle.h" "src/Triangle.cpp")
 
 add_library(Image 
 "${PROJECT_SOURCE_DIR}/external_dependencies/libbmp/libbmp.cpp" 
-"${PROJECT_SOURCE_DIR}/src/Image.cpp" "include/Light.h" "include/Material.h" "include/Plane.h")
+"${PROJECT_SOURCE_DIR}/src/Image.cpp" "include/Light.h" "include/Material.h" "include/Plane.h" "src/Plane.cpp" "include/Triangle.h" "src/Triangle.cpp")
 
-add_library(Objects "${PROJECT_SOURCE_DIR}/src/Sphere.cpp" "include/Light.h" "include/Material.h" "include/Plane.h")
+add_library(Objects "${PROJECT_SOURCE_DIR}/src/Sphere.cpp" "include/Light.h" "include/Material.h" "include/Plane.h" "src/Plane.cpp" "include/Triangle.h" "src/Triangle.cpp")
 
-add_library(RayTracer "${PROJECT_SOURCE_DIR}/src/RayTracer.cpp" "include/Light.h" "include/Material.h" "include/Plane.h")
+add_library(RayTracer "${PROJECT_SOURCE_DIR}/src/RayTracer.cpp" "include/Light.h" "include/Material.h" "include/Plane.h" "src/Plane.cpp" "include/Triangle.h" "src/Triangle.cpp")
 
 target_link_libraries(RayTracer Ray Objects Image)
 
 # Finally, we set the executable
-add_executable(RayTraceRunner "${PROJECT_SOURCE_DIR}/src/Main.cpp" "include/Light.h" "include/Material.h" "include/Plane.h")
+add_executable(RayTraceRunner "${PROJECT_SOURCE_DIR}/src/Main.cpp" "include/Light.h" "include/Material.h" "include/Plane.h" "src/Plane.cpp" "include/Triangle.h" "src/Triangle.cpp")
 
 # .. which is linked together with the ray tracer library
 target_link_libraries(RayTraceRunner RayTracer)

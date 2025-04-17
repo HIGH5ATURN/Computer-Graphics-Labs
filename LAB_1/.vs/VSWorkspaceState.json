@@ -7,8 +7,9 @@
   },
   "ExpandedNodes": [
     "",
+    "\\include",
     "\\src"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\src\\Plane.cpp",
   "PreviewInSolutionExplorer": false
 }

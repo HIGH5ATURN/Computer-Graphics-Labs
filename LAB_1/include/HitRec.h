@@ -10,7 +10,6 @@ struct HitRec {
     int primIndex;
     Vec3f p;
     Vec3f n;
-    Vec3f color;
     bool anyHit;
     const Material* material;
 };
