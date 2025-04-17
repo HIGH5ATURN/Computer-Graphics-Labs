@@ -66,48 +66,25 @@ Vec3f RayTracer::traceRay(const Ray& ray, int depth) {
 
     if (hitRec.anyHit) {
 
-
-
         Vec3f localColor = Vec3f(0.0f, 0.0f, 0.0f);
         Vec3f reflectedColor = Vec3f(0.0f, 0.0f, 0.0f);
         bool inShadow = false;
+
+
         // Compute direct lighting
         for (const Light* light : scene->lights) {
             localColor += computeLightColor(ray, hitRec, light, inShadow);
         }
-        
-
+       
         if (inShadow) {
             return localColor;
         }
+
+
+     /*------Reflection Here---------*/
     #if defined REFLECTIONS
-       
-        // Compute reflections if material is reflective
-        if (hitRec.material->reflectivity > 0.0f) {
-
-
-            Vec3f N = hitRec.n;
-            Vec3f reflectionDir = ray.d - N*( 2.0f * (ray.d.dot(N)));
-            
-            
-            // Applying fuzziness
-            float fuzz = hitRec.material->fuzziness;
-            if (fuzz > 0.0f) {   
-                Vec3f randomVec = RayTracer::randomInUnitSphere(); 
-                reflectionDir = (reflectionDir + randomVec * fuzz).normalize();
-            }
-
-
-            Ray reflectionRay(hitRec.p + N * Ray::rayEps, reflectionDir);
-
-            // Create reflection ray with small offset to avoid self-intersection
-
-             reflectedColor = traceRay(reflectionRay, depth - 1);
-
-            // Blend between surface color and reflected color based on reflectivity
-           
-        }
-        #endif
+        reflectedColor = calculateReflection(ray, hitRec, depth);
+    #endif
         Vec3f finalColor = localColor * (1.0f - hitRec.material->reflectivity) +
             reflectedColor * hitRec.material->reflectivity;
         return finalColor;
@@ -120,7 +97,59 @@ Vec3f RayTracer::traceRay(const Ray& ray, int depth) {
 
 
 
+Vec3f RayTracer:: calculateReflection(const Ray& ray, HitRec& hitRec, int depth){
+    // Compute reflections if material is reflective
+    if (hitRec.material->reflectivity > 0.0f) {
 
+        Vec3f N = hitRec.n;
+        Vec3f reflectionDir = ray.d - N * (2.0f * (ray.d.dot(N)));
+
+        /*---------Pertrub Normal HERE-----------*/
+        #ifdef FUZZY_NORMALS
+                reflectionDir = randomlyPerturbNormals(reflectionDir, hitRec.material);
+        #endif
+
+        Ray reflectionRay(hitRec.p + N * Ray::rayEps, reflectionDir);
+
+        // Create reflection ray with small offset to avoid self-intersection
+
+       Vec3f reflectedColor = traceRay(reflectionRay, depth - 1);
+
+        // Blend between surface color and reflected color based on reflectivity
+    }
+    else {
+        return Vec3f(0.0f, 0.0f, 0.0f);
+    }
+}
+
+Vec3f RayTracer:: randomlyPerturbNormals(Vec3f reflectionDir, const Material* mat) {
+    // Applying fuzziness
+    float fuzz = mat->fuzziness;
+    Vec3f randomVec = Vec3f(0.0f, 0.0f, 0.0f);
+
+    if (fuzz > 0.0f) {
+       randomVec = RayTracer::randomInUnitSphere();
+    }
+
+    return  (reflectionDir + randomVec * fuzz).normalize();
+}
+
+bool RayTracer::isInShadow(Vec3f N,HitRec & hitRec, Vec3f lightPosition) {
+    Vec3f shadowOrigin = hitRec.p + N * Ray::rayEps; // Small offset to avoid self-hit
+    Vec3f L = (lightPosition - hitRec.p).normalize();
+    Ray shadowRay(shadowOrigin, L);
+    shadowRay.tClip = (lightPosition - shadowOrigin).len(); // Stop at light
+
+    HitRec shadowHitRec;
+
+    searchClosestHit(shadowRay, shadowHitRec);
+
+    if (shadowHitRec.anyHit && shadowHitRec.tHit < shadowRay.tClip) {
+       return true;
+    }
+
+    return false;
+}   
 
 Vec3f RayTracer::computeLightColor(const Ray& ray, HitRec& hitRec, const Light* light, bool & shadow) {
     Vec3f N = hitRec.n;                                 // Surface normal
@@ -137,17 +166,7 @@ Vec3f RayTracer::computeLightColor(const Ray& ray, HitRec& hitRec, const Light* 
     bool inShadow = false;
 
 #if defined(SHADOWS_BLACK) || defined(SHADOWS_AMBIENT)
-    Vec3f shadowOrigin = hitRec.p + N * Ray::rayEps; // Small offset to avoid self-hit
-    Ray shadowRay(shadowOrigin, L);
-    shadowRay.tClip = (light->position - shadowOrigin).len(); // Stop at light
-
-    HitRec shadowHitRec;
-
-    searchClosestHit(shadowRay, shadowHitRec);
-
-    if (shadowHitRec.anyHit && shadowHitRec.tHit < shadowRay.tClip) {
-        inShadow = true;
-    }
+    inShadow = isInShadow(N, hitRec, light->position);
 #endif
    
     shadow = inShadow;
@@ -158,7 +177,6 @@ Vec3f RayTracer::computeLightColor(const Ray& ray, HitRec& hitRec, const Light* 
             return ambient;
     #endif
     }
-
 
    
 #if defined(DIFFUSE_LIGHTING)

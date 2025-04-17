@@ -32,8 +32,11 @@ public:
     //--calculating the colors
     Vec3f computeLightColor(const Ray& ray, HitRec& hitRec, const Light* light,bool &shadow);
     
+    Vec3f calculateReflection(const Ray& ray, HitRec& hitRec, int depth);
 
+    Vec3f randomlyPerturbNormals(Vec3f reflectionDir, const Material* mat);
 
+    bool isInShadow(Vec3f N, HitRec& hitRec, Vec3f lightPosition);
 
     void toPPM(const char* path) {
         this->image->toPPM(path);

@@ -24,7 +24,7 @@
 
 /// Then we define which scene we want to render
 /// Replace the SCENE_* value with the scene you want to render from the values above
-#define SCENE SCENE_TRIANGLES
+#define SCENE SCENE_PERTURB_NORMALS
 
 // Finally, each scene will enable a set of features
 #if SCENE == SCENE_AMBIENT_ONLY

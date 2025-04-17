@@ -10,6 +10,6 @@
     "\\include",
     "\\src"
   ],
-  "SelectedNode": "\\src\\RayTracer.cpp",
+  "SelectedNode": "\\include\\RayTracer.h",
   "PreviewInSolutionExplorer": false
 }
