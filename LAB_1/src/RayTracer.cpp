@@ -2,6 +2,11 @@
 #include "cmath"
 #include "stdio.h"
 #include "raytrace_features.h"
+#include <vector>
+#include <thread>
+#include <mutex>
+
+std::mutex imageMutex;
 using namespace std;
 void RayTracer::searchClosestHit(const Ray & ray, HitRec & hitRec) {
     hitRec.anyHit = false;
@@ -42,58 +47,107 @@ Vec3f RayTracer::getEyeRayDirection(int x, int y) {
 
 void RayTracer::fireRays() {
     Ray ray;
+    int samples =16;  
 
-    for(int x = 0; x < this->image->getWidth(); x++) {
-        for(int y = 0; y < this->image->getHeight(); y++) {
-            //printf("pixel: %d, %d \n", x,y);
+    for (int x = 0; x < this->image->getWidth(); x++) {
+        for (int y = 0; y < this->image->getHeight(); y++) {
+#ifdef ANTI_ALIASING
+            Vec3f accumulatedColor(0.0f, 0.0f, 0.0f);
+
+            // Supersampling: shoot multiple rays per pixel
+            for (int i = 0; i < samples; i++) {
+                // Generate random offsets to jitter the ray origin slightly
+                float offsetX = (rand() / float(RAND_MAX)) - 0.5f;
+                float offsetY = (rand() / float(RAND_MAX)) - 0.5f;
+
+                // Get the ray direction using jittered offsets
+                ray.d = getEyeRayDirection(x + offsetX, y + offsetY);
+
+                // Trace the ray and accumulate the color
+                accumulatedColor += traceRay(ray, 5);
+            }
+
+            // Average the accumulated color
+            accumulatedColor *= (1.0f/float(samples));
+
+            // Set the final pixel color
+            this->image->setPixel(x, y, accumulatedColor.clamp());
+#else
             ray.d = RayTracer::getEyeRayDirection(x, y);
-		
-            Vec3f  color = traceRay(ray, 5);
-            this->image->setPixel(x, y, color);
 
+            Vec3f  color = traceRay(ray, 3);
+            this->image->setPixel(x, y, color);
+#endif
         }
     }
 }
 
 
+Vec3f RayTracer::calculateRefraction(const Ray& ray, HitRec& hitRec, int depth) {
+    Vec3f N = hitRec.n;
+    float eta = hitRec.material->refractiveIndex;
+    float cosi = -std::max(-1.0f, std::min(1.0f, ray.d.dot(N)));
+
+    float etai = 1.0f, etat = eta;
+    if (cosi < 0.0f) {
+        cosi = -cosi;
+        std::swap(etai, etat);
+        N = -N;
+    }
+
+    float etaRatio = etai / etat;
+    float k = 1.0f - etaRatio * etaRatio * (1.0f - cosi * cosi);
+
+    if (k < 0.0f) {
+        // Total internal reflection
+        return Vec3f(0.0f,0.0f,0.0f);
+    }
+    else {
+        Vec3f refractDir = (ray.d * etaRatio + N * (etaRatio * cosi - sqrtf(k))).normalize();
+        Ray refractedRay(hitRec.p - N * Ray::rayEps, refractDir);  // Offset slightly into the surface
+        return traceRay(refractedRay, depth - 1);
+    }
+}
 
 
 Vec3f RayTracer::traceRay(const Ray& ray, int depth) {
-    if (depth <= 0) return bgColor; // Base case for recursion
+    if (depth <= 0) return bgColor;
 
     HitRec hitRec;
     searchClosestHit(ray, hitRec);
 
     if (hitRec.anyHit) {
-
-        Vec3f localColor = Vec3f(0.0f, 0.0f, 0.0f);
-        Vec3f reflectedColor = Vec3f(0.0f, 0.0f, 0.0f);
+        Vec3f localColor(0.0f, 0.0f, 0.0f),
+            reflectedColor(0.0f, 0.0f, 0.0f),
+            refractedColor(0.0f, 0.0f, 0.0f);
         bool inShadow = false;
 
-
-        // Compute direct lighting
         for (const Light* light : scene->lights) {
             localColor += computeLightColor(ray, hitRec, light, inShadow);
         }
-       
-        if (inShadow) {
-            return localColor;
-        }
 
-
-     /*------Reflection Here---------*/
     #if defined REFLECTIONS
-        reflectedColor = calculateReflection(ray, hitRec, depth);
+            if (hitRec.material->reflectivity > 0.0f)
+                reflectedColor = calculateReflection(ray, hitRec, depth);
     #endif
-        Vec3f finalColor = localColor * (1.0f - hitRec.material->reflectivity) +
-            reflectedColor * hitRec.material->reflectivity;
-        return finalColor;
+
+    #if defined REFRACTIONS
+            if (hitRec.material->transparency > 0.0f)
+                refractedColor = calculateRefraction(ray, hitRec, depth);
+    #endif
+
+        // Combine all
+        float R = hitRec.material->reflectivity;
+        float T = hitRec.material->transparency;
+        float base = 1.0f - R - T;
+
+        Vec3f finalColor = localColor * base + reflectedColor * R + refractedColor * T;
+        return finalColor.clamp();
     }
-    else {
-        // Background color
-        return bgColor;
-    }
+
+    return bgColor;
 }
+
 
 
 
@@ -151,6 +205,32 @@ bool RayTracer::isInShadow(Vec3f N,HitRec & hitRec, Vec3f lightPosition) {
     return false;
 }   
 
+float RayTracer::computeShadowFactor(const HitRec& hitRec, const Light* light) {
+
+    int hits = 0;
+    int total = light->samples;
+    Vec3f N = hitRec.n;
+
+    for (int i = 0; i < total; i++) {
+        Vec3f jitteredPos = light->position + randomInUnitSphere() * light->radius;
+        Vec3f L = (jitteredPos - hitRec.p).normalize();
+
+        Vec3f shadowOrigin = hitRec.p + N * Ray::rayEps;
+        Ray shadowRay(shadowOrigin, L);
+        shadowRay.tClip = (jitteredPos - shadowOrigin).len();
+
+        HitRec shadowHitRec;
+        searchClosestHit(shadowRay, shadowHitRec);
+
+        if (shadowHitRec.anyHit && shadowHitRec.tHit < shadowRay.tClip) {
+            hits++; 
+        }
+    }
+
+    return 1.0f - (float)hits / total;
+}
+
+
 Vec3f RayTracer::computeLightColor(const Ray& ray, HitRec& hitRec, const Light* light, bool & shadow) {
     Vec3f N = hitRec.n;                                 // Surface normal
     Vec3f L = (light->position - hitRec.p).normalize();             // Light direction
@@ -159,47 +239,72 @@ Vec3f RayTracer::computeLightColor(const Ray& ray, HitRec& hitRec, const Light* 
     Vec3f diffuse = Vec3f(0.0f, 0.0f, 0.0f);
     Vec3f specular = Vec3f(0.0f, 0.0f, 0.0f);
 
-#if defined(AMBIENT_LIGHTING)
-    ambient = hitRec.material->ambientColor.multCoordwise(light->ambient);
-#endif
-
-    bool inShadow = false;
-
-#if defined(SHADOWS_BLACK) || defined(SHADOWS_AMBIENT)
-    inShadow = isInShadow(N, hitRec, light->position);
-#endif
-   
-    shadow = inShadow;
-    if (inShadow) {
-    #if defined(SHADOWS_BLACK)
-            return Vec3f(0.0f, 0.0f, 0.0f);
-    #elif defined(SHADOWS_AMBIENT)
-            return ambient;
+    #if defined(AMBIENT_LIGHTING)
+        ambient = hitRec.material->ambientColor.multCoordwise(light->ambient);
     #endif
-    }
+
+        bool inShadow = false;
+
+    #if defined(SHADOWS_BLACK) || defined(SHADOWS_AMBIENT)
+        inShadow = isInShadow(N, hitRec, light->position);
+    #endif
+   
+   
+
+
+    #ifdef SOFT_SHADOWS   
+        // Soft shadow factor
+        float shadowFactor = computeShadowFactor(hitRec, light);
+        inShadow = (shadowFactor < 1.0f);
+   
+    #endif 
+
+        shadow = inShadow;
+    #ifdef SOFT_SHADOWS 
+                if (inShadow && shadowFactor <= 0.01f) {
+        #if defined(SHADOWS_BLACK)
+                    return Vec3f(0.0f, 0.0f, 0.0f);
+        #elif defined(SHADOWS_AMBIENT)
+                    return ambient;
+        #endif
+                }
+    #else
+                if (inShadow) {
+        #if defined(SHADOWS_BLACK)
+                    return Vec3f(0.0f, 0.0f, 0.0f);
+        #elif defined(SHADOWS_AMBIENT)
+                    return ambient;
+        #endif
+        }
+    #endif 
 
    
-#if defined(DIFFUSE_LIGHTING)
-        float diff = std::max(0.0f, N.dot(L));
-        diffuse = hitRec.material->diffuseColor.multCoordwise(light->diffuse) * diff;
-#endif
+    #if defined(DIFFUSE_LIGHTING)
+            float diff = std::max(0.0f, N.dot(L));
+            diffuse = hitRec.material->diffuseColor.multCoordwise(light->diffuse) * diff;
+    #endif
 
-#if defined(SPECULAR_LIGHTING)
-        Vec3f V = -ray.d;                    
-        Vec3f R = (N * (2.0f * N.dot(L)) - L).normalize();          
-        float angle = max(0.0f, R.dot(V));
-        float spec = pow(angle, hitRec.material->shineness);
-        specular = hitRec.material->specularColor * spec;
-#endif
+    #if defined(SPECULAR_LIGHTING)
+            Vec3f V = -ray.d;                    
+            Vec3f R = (N * (2.0f * N.dot(L)) - L).normalize();          
+            float angle = max(0.0f, R.dot(V));
+            float spec = pow(angle, hitRec.material->shineness);
+            specular = hitRec.material->specularColor * spec;
+    #endif
     
+    #ifdef SOFT_SHADOWS
+           localColor = ambient + (diffuse + specular) * shadowFactor;
+    #else
+           localColor = ambient + diffuse + specular ;
+    #endif
 
-    localColor = ambient + diffuse + specular;
-    // Clamp color to [0, 1]
-    localColor.x = min(max(0.0f, localColor.x), 1.0f);
-    localColor.y = min(max(0.0f, localColor.y), 1.0f);
-    localColor.z = min(max(0.0f, localColor.z), 1.0f);
+       
+        // Clamp color to [0, 1]
+        localColor.x = min(max(0.0f, localColor.x), 1.0f);
+        localColor.y = min(max(0.0f, localColor.y), 1.0f);
+        localColor.z = min(max(0.0f, localColor.z), 1.0f);
 
-    return localColor;
+        return localColor;
 }
 
 

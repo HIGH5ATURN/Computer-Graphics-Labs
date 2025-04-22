@@ -38,6 +38,9 @@ public:
 
     bool isInShadow(Vec3f N, HitRec& hitRec, Vec3f lightPosition);
 
+    float computeShadowFactor(const HitRec& hitRec, const Light* light);
+
+    Vec3f calculateRefraction(const Ray& ray, HitRec& hitRec, int depth);
     void toPPM(const char* path) {
         this->image->toPPM(path);
     };
@@ -51,9 +54,9 @@ public:
        
     };
 
-    void addLight(const Vec3f& pos, const Vec3f& ambient,const Vec3f& diffuse, const Vec3f& specular) {
+    void addLight(const Vec3f& pos, const Vec3f& ambient,const Vec3f& diffuse, const Vec3f& specular, float rad, int samp) {
 
-        this->scene->addLight(pos, ambient, diffuse, specular);
+        this->scene->addLight(pos, ambient, diffuse, specular, rad, samp);
     };
 
     void addPlane(const Vec3f& pt, const Vec3f& n, const Material* mat) {

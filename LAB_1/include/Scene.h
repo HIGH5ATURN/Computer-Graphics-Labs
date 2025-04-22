@@ -23,9 +23,9 @@ public:
 		objects.push_back(s);
 	}
 
-    void addLight(const Vec3f& pos, const Vec3f& ambient, const Vec3f& diffuse, const Vec3f& specular) {
+    void addLight(const Vec3f& pos, const Vec3f& ambient, const Vec3f& diffuse, const Vec3f& specular, float rad, int samp) {
        // Corrected to use a pointer to Light  
-       Light* l = new Light(pos, ambient, diffuse,specular);
+       Light* l = new Light(pos, ambient, diffuse,specular,rad,samp);
 	   lights.push_back(l);
     }
 

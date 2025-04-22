@@ -21,10 +21,12 @@
 #define SCENE_REFLECTIONS 211
 #define SCENE_TRIANGLES 220
 #define SCENE_PERTURB_NORMALS 230
-
+#define SCENE_SOFT_SHADOWS 310
+#define SCENE_REFRACTIONS 32
+#define SCENE_ANTI_ALIASING 33
 /// Then we define which scene we want to render
 /// Replace the SCENE_* value with the scene you want to render from the values above
-#define SCENE SCENE_PERTURB_NORMALS
+#define SCENE SCENE_SOFT_SHADOWS
 
 // Finally, each scene will enable a set of features
 #if SCENE == SCENE_AMBIENT_ONLY
@@ -69,6 +71,36 @@
 #define REFLECTIONS
 #define TRIANGLES
 #define FUZZY_NORMALS
+#elif SCENE == SCENE_SOFT_SHADOWS
+#define AMBIENT_LIGHTING
+#define DIFFUSE_LIGHTING
+#define SPECULAR_LIGHTING
+#define SHADOWS_AMBIENT
+#define REFLECTIONS
+#define TRIANGLES
+#define FUZZY_NORMALS
+#define SOFT_SHADOWS
+#elif SCENE == SCENE_REFRACTIONS
+#define AMBIENT_LIGHTING
+#define DIFFUSE_LIGHTING
+#define SPECULAR_LIGHTING
+#define SHADOWS_AMBIENT
+#define REFLECTIONS
+#define TRIANGLES
+#define FUZZY_NORMALS
+#define SOFT_SHADOWS
+#define REFRACTIONS
+#elif SCENE == SCENE_ANTI_ALIASING
+#define AMBIENT_LIGHTING
+#define DIFFUSE_LIGHTING
+#define SPECULAR_LIGHTING
+#define SHADOWS_AMBIENT
+#define REFLECTIONS
+#define TRIANGLES
+#define FUZZY_NORMALS
+#define SOFT_SHADOWS
+#define REFRACTIONS
+#define ANTI_ALIASING
 #endif
 //Add Extras
 

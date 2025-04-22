@@ -1,6 +1,7 @@
 ﻿#include "RayTracer.h"
 #include "Vec3.h" 
 #include "raytrace_features.h"
+
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
 RayTracer* initTracer(int width, int height)
@@ -35,6 +36,20 @@ RayTracer* initTracer(int width, int height)
 		5000.0f,
 		0.5f
 	));
+
+	// Glass-like sphere in front of red sphere
+	rayTracer->addSphere(Vec3f(-0.5f, -0.05f, -5.0f), 0.5f, new Material(
+		Vec3f(0.0f, 0.0f, 0.0f),    // ambient (glass doesn't emit light)
+		Vec3f(0.1f, 0.1f, 0.1f),    // diffuse (low)
+		Vec3f(0.9f, 0.9f, 0.9f),    // specular (highlights)
+		10000.0f,                   // shininess
+		0.05f,                      // reflectivity (glass has some)
+		0.0f,                       // fuzziness (none - clean reflection)
+		1.0f,                       // transparency (fully transparent)
+		1.52f                       // refractive index for glass
+	));
+
+
 
 	#ifdef TRIANGLES
 
@@ -109,7 +124,51 @@ RayTracer* initTracer(int width, int height)
 
 
 
-	rayTracer->addLight(Vec3f(-10.0f,5.0f, 10.0f), Vec3f(1.0f, 1.0f, 1.0f), Vec3f(1.0f, 1.0f, 1.0f), Vec3f(1.0f, 1.0f, 1.0f));
+	// Main white light from the top-left (slightly soft shadow)
+	rayTracer->addLight(
+		Vec3f(-10.0f, 5.0f, 10.0f),
+		Vec3f(1.0f, 1.0f, 1.0f),
+		Vec3f(1.0f, 1.0f, 1.0f),
+		Vec3f(1.0f, 1.0f, 1.0f),
+		1.0f, 100
+	);
+
+	// Warm orange light from the front-right (soft shadow)
+	rayTracer->addLight(
+		Vec3f(3.0f, 5.0f, 10.0f),
+		Vec3f(1.0f, 1.0f, 1.0f),
+		Vec3f(1.0f, 1.0f, 1.0f),
+		Vec3f(1.0f, 1.0f, 1.0f),
+		0.2f,10
+	);
+
+	//// Cool bluish overhead fill light (very soft)
+	//rayTracer->addLight(
+	//	Vec3f(0.0f, 15.0f, 0.0f),
+	//	Vec3f(0.02f, 0.02f, 0.05f),
+	//	Vec3f(0.6f, 0.6f, 1.0f),
+	//	Vec3f(0.6f, 0.6f, 1.0f),
+	//	0.6f, 24
+	//);
+
+	//// Back light (cool tone, medium softness)
+	//rayTracer->addLight(
+	//	Vec3f(0.0f, 4.0f, -10.0f),
+	//	Vec3f(0.05f, 0.05f, 0.07f),
+	//	Vec3f(0.5f, 0.6f, 0.7f),
+	//	Vec3f(0.5f, 0.6f, 0.7f),
+	//	0.3f, 12
+	//);
+
+	//// Stylized color light from below (cyberpunk bounce)
+	//rayTracer->addLight(
+	//	Vec3f(0.0f, -3.0f, 3.0f),
+	//	Vec3f(0.02f, 0.01f, 0.06f),
+	//	Vec3f(0.3f, 0.1f, 0.8f),
+	//	Vec3f(0.3f, 0.1f, 0.8f),
+	//	0.25f, 10
+	//);
+
 
 	return rayTracer;
 }

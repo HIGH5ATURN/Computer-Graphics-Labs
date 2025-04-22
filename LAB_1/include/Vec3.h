@@ -40,10 +40,22 @@ public:
 	Vec3<T> operator*(T t) const { return Vec3<T>(x * t, y * t, z * t); }
 	void operator*=(T t)  { x *= t; y *= t; z *= t; }
 	
+
+
 	T dot(const Vec3 &v) const { return x * v.x + y * v.y + z * v.z; }
 	Vec3<T> cross(const Vec3 &v) const { return Vec3<T>(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x); }
 	
 	Vec3<T> multCoordwise(const Vec3 &v) const { return Vec3<T>(x * v.x, y * v.y, z * v.z); }
+
+	Vec3<T> clamp() const {
+		return Vec3<T>(
+			std::min(std::max(x, 0.0f), 1.0f),
+			std::min(std::max(y, 0.0f), 1.0f),
+			std::min(std::max(z, 0.0f), 1.0f)
+		);
+	}
+
+
 };
 
 template<class T>
