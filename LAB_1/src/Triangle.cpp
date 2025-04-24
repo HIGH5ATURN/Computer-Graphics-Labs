@@ -18,7 +18,7 @@ bool Triangle::hit(const Ray& r, HitRec& rec) const {
     Vec3f c1 = (v2 - v1).cross(p - v1);
     Vec3f c2 = (v0 - v2).cross(p - v2);
 
-    if ((normal.dot(c0) >= 0) && (normal.dot(c1) >= 0) && (normal.dot(c2) >= 0)) {
+    if ((normal.dot(c0) >= 0) && (normal.dot(c1) >= 0) && (normal.dot(c2) >= 0) && t <rec.tHit) {
         rec.tHit = t;
         rec.anyHit = true;
         return true;

@@ -13,13 +13,13 @@ RayTracer* initTracer(int width, int height)
 		Vec3f(0.0f, 0.1f, 0.0f),   // ambient
 		Vec3f(0.1f, 0.6f, 0.1f),   // diffuse
 		Vec3f(0.6f, 0.6f, 0.6f),   // specular
-		5000.0f,//shineness
+		10.0f,//shineness
 		0.5f,//reflectivity
 		0.05f //fuzziness
 		));
 
 	//RED
-	rayTracer->addSphere(Vec3f(0.0f, -0.05f, -10.0f), 1.0f, new Material(
+	rayTracer->addSphere(Vec3f(-1.5f, -0.05f, -7.0f), 0.25f, new Material(
 		Vec3f(0.1f, 0.0f, 0.0f),   // ambient
 		Vec3f(0.6f, 0.1f, 0.1f),   // diffuse
 		Vec3f(0.06f, 0.06f, 0.06f),   // specular
@@ -37,6 +37,10 @@ RayTracer* initTracer(int width, int height)
 		0.5f
 	));
 
+#ifdef REFRACTIONS
+
+
+
 	// Glass-like sphere in front of red sphere
 	rayTracer->addSphere(Vec3f(-0.5f, -0.05f, -5.0f), 0.5f, new Material(
 		Vec3f(0.0f, 0.0f, 0.0f),    // ambient (glass doesn't emit light)
@@ -49,7 +53,7 @@ RayTracer* initTracer(int width, int height)
 		1.52f                       // refractive index for glass
 	));
 
-
+#endif
 
 	#ifdef TRIANGLES
 
@@ -58,27 +62,27 @@ RayTracer* initTracer(int width, int height)
 	/*Triangles*/
 		//Red Triangle
 	rayTracer->addTriangle(
-		Vec3f(-0.8f, 1.0f, -11.0f), 
-		Vec3f(-2.5f, 3.4f, -11.0f), 
-		Vec3f(-0.8f, 3.4f, -11.0f),  
+		Vec3f(-0.8f, -1.0f, -15.0f),
+		Vec3f(-2.5f, 1.4f, -15.0f),
+		Vec3f(-0.8f, 1.4f, -15.0f),
 		new Material(
-		Vec3f(0.2f, 0.0f, 0.0f),
-		Vec3f(0.5f, 0.0f, 0.0f),
-		Vec3f(0.2f, 0.2f, 0.2f),   
-		4000.0f ,
-		0.5f)               
+			Vec3f(0.2f, 0.0f, 0.0f),
+			Vec3f(0.5f, 0.0f, 0.0f),
+			Vec3f(0.2f, 0.2f, 0.2f),
+			4000.0f,
+			0.85f)
 	);
 
 	//Green Triangle
 	rayTracer->addTriangle(
-		Vec3f(-0.8f, 1.0f, -11.0f), 
-		Vec3f(0.9f, 3.4f, -11.0f), 
-		Vec3f(-0.8f, 3.4f, -11.0f), 
+		Vec3f(-0.8f, -1.0f, -15.0f),
+		Vec3f(0.9f, 1.4f, -15.0f),
+		Vec3f(-0.8f, 1.4f, -15.0f),
 		new Material(Vec3f(0.0f, 0.2f, 0.0f),
-		Vec3f(0.0f, 0.5f, 0.0f),
-		Vec3f(0.2f, 0.2f, 0.2f),    
-		4000.0f ,
-			0.5f)                
+			Vec3f(0.0f, 0.5f, 0.0f),
+			Vec3f(0.2f, 0.2f, 0.2f),
+			4000.0f,
+			0.85f)
 	);
 
 
@@ -112,7 +116,7 @@ RayTracer* initTracer(int width, int height)
 		Vec3f(0.1f, 0.1f, 0.6f),     // diffuse
 		Vec3f(0.0f, 0.0f, 0.0f),     // specular (matte surface)
 		10.0f,                       // low shininess
-		0.75f                         // non-reflective
+		0.0f                         // non-reflective
 	);
 
 
@@ -133,14 +137,18 @@ RayTracer* initTracer(int width, int height)
 		1.0f, 100
 	);
 
-	// Warm orange light from the front-right (soft shadow)
-	rayTracer->addLight(
-		Vec3f(3.0f, 5.0f, 10.0f),
-		Vec3f(1.0f, 1.0f, 1.0f),
-		Vec3f(1.0f, 1.0f, 1.0f),
-		Vec3f(1.0f, 1.0f, 1.0f),
-		0.2f,10
-	);
+#ifdef SOFT_SHADOWS
+
+
+	//// Warm orange light from the front-right (soft shadow)
+	//rayTracer->addLight(
+	//	Vec3f(3.0f, 5.0f, 10.0f),
+	//	Vec3f(1.0f, 1.0f, 1.0f),
+	//	Vec3f(1.0f, 1.0f, 1.0f),
+	//	Vec3f(1.0f, 1.0f, 1.0f),
+	//	0.2f,10
+	//);
+#endif // SOFT_SHADOWS
 
 	//// Cool bluish overhead fill light (very soft)
 	//rayTracer->addLight(

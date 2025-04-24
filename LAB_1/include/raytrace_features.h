@@ -26,7 +26,7 @@
 #define SCENE_ANTI_ALIASING 33
 /// Then we define which scene we want to render
 /// Replace the SCENE_* value with the scene you want to render from the values above
-#define SCENE SCENE_SOFT_SHADOWS
+#define SCENE SCENE_TRIANGLES
 
 // Finally, each scene will enable a set of features
 #if SCENE == SCENE_AMBIENT_ONLY
@@ -80,6 +80,7 @@
 #define TRIANGLES
 #define FUZZY_NORMALS
 #define SOFT_SHADOWS
+
 #elif SCENE == SCENE_REFRACTIONS
 #define AMBIENT_LIGHTING
 #define DIFFUSE_LIGHTING

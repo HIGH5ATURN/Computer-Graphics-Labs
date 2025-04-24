@@ -19,7 +19,7 @@ public:
        /* this->bgColor = Vec3f(0.69f, 0.69f, 0.69f);*/
 
         this->bgColor = Vec3f(0.0627f, 0.0706f, 0.0941f);
-        this->bgColor2= Vec3f(0.06f, 0.06f, 0.2f);
+        this->bgColor2= Vec3f(0.69f, 0.69f, 0.69f);
     }
     ~RayTracer() {
         delete scene;

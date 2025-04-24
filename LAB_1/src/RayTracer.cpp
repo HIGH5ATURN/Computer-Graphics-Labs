@@ -5,6 +5,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <random>
 
 std::mutex imageMutex;
 using namespace std;
@@ -45,9 +46,18 @@ Vec3f RayTracer::getEyeRayDirection(int x, int y) {
     return Vec3f((left + x * dx), (top - y * dy), z).normalize();
 }
 
+
+
 void RayTracer::fireRays() {
     Ray ray;
-    int samples =16;  
+    int samples = 8;  // Number of samples for anti-aliasing
+
+    // Random number generation for jittering (better randomness)
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0.0f, 1.0f);
+
+    ray.o = Vec3f(2.0f, 2.0f, 5.0f);
 
     for (int x = 0; x < this->image->getWidth(); x++) {
         for (int y = 0; y < this->image->getHeight(); y++) {
@@ -56,31 +66,32 @@ void RayTracer::fireRays() {
 
             // Supersampling: shoot multiple rays per pixel
             for (int i = 0; i < samples; i++) {
-                // Generate random offsets to jitter the ray origin slightly
-                float offsetX = (rand() / float(RAND_MAX)) - 0.5f;
-                float offsetY = (rand() / float(RAND_MAX)) - 0.5f;
+               
+                float offsetX = dis(gen);
+                float offsetY = dis(gen);
 
-                // Get the ray direction using jittered offsets
+              
                 ray.d = getEyeRayDirection(x + offsetX, y + offsetY);
 
-                // Trace the ray and accumulate the color
-                accumulatedColor += traceRay(ray, 5);
+                
+                accumulatedColor += traceRay(ray, 5);  
             }
 
-            // Average the accumulated color
-            accumulatedColor *= (1.0f/float(samples));
+           
+            accumulatedColor *= (1.0f / float(samples));
 
-            // Set the final pixel color
-            this->image->setPixel(x, y, accumulatedColor.clamp());
+            
+            this->image->setPixel(x, y, accumulatedColor.clamp());  
 #else
-            ray.d = RayTracer::getEyeRayDirection(x, y);
-
-            Vec3f  color = traceRay(ray, 3);
+         
+            ray.d = getEyeRayDirection(x, y);
+            Vec3f color = traceRay(ray, 3);  
             this->image->setPixel(x, y, color);
 #endif
         }
     }
 }
+
 
 
 Vec3f RayTracer::calculateRefraction(const Ray& ray, HitRec& hitRec, int depth) {
@@ -104,7 +115,7 @@ Vec3f RayTracer::calculateRefraction(const Ray& ray, HitRec& hitRec, int depth) 
     }
     else {
         Vec3f refractDir = (ray.d * etaRatio + N * (etaRatio * cosi - sqrtf(k))).normalize();
-        Ray refractedRay(hitRec.p - N * Ray::rayEps, refractDir);  // Offset slightly into the surface
+        Ray refractedRay(hitRec.p - N * Ray::rayEps, refractDir); 
         return traceRay(refractedRay, depth - 1);
     }
 }
@@ -126,6 +137,9 @@ Vec3f RayTracer::traceRay(const Ray& ray, int depth) {
             localColor += computeLightColor(ray, hitRec, light, inShadow);
         }
 
+
+
+       
     #if defined REFLECTIONS
             if (hitRec.material->reflectivity > 0.0f)
                 reflectedColor = calculateReflection(ray, hitRec, depth);
@@ -137,15 +151,24 @@ Vec3f RayTracer::traceRay(const Ray& ray, int depth) {
     #endif
 
         // Combine all
-        float R = hitRec.material->reflectivity;
-        float T = hitRec.material->transparency;
-        float base = 1.0f - R - T;
+            float R = 0.0f;
+            float T = 0.0f;
+            
+    #ifdef REFLECTIONS   
+            R=hitRec.material->reflectivity;
+    #endif
+    #ifdef REFRACTIONS
+            T = hitRec.material->transparency;
+           
+    #endif 
 
+      
+       float base = 1.0f - R - T;
         Vec3f finalColor = localColor * base + reflectedColor * R + refractedColor * T;
         return finalColor.clamp();
     }
 
-    return bgColor;
+    return bgColor2;
 }
 
 
@@ -165,11 +188,11 @@ Vec3f RayTracer:: calculateReflection(const Ray& ray, HitRec& hitRec, int depth)
 
         Ray reflectionRay(hitRec.p + N * Ray::rayEps, reflectionDir);
 
-        // Create reflection ray with small offset to avoid self-intersection
+        
 
        Vec3f reflectedColor = traceRay(reflectionRay, depth - 1);
 
-        // Blend between surface color and reflected color based on reflectivity
+       
     }
     else {
         return Vec3f(0.0f, 0.0f, 0.0f);
@@ -204,7 +227,6 @@ bool RayTracer::isInShadow(Vec3f N,HitRec & hitRec, Vec3f lightPosition) {
 
     return false;
 }   
-
 float RayTracer::computeShadowFactor(const HitRec& hitRec, const Light* light) {
 
     int hits = 0;
@@ -223,12 +245,17 @@ float RayTracer::computeShadowFactor(const HitRec& hitRec, const Light* light) {
         searchClosestHit(shadowRay, shadowHitRec);
 
         if (shadowHitRec.anyHit && shadowHitRec.tHit < shadowRay.tClip) {
-            hits++; 
+            hits++;
+
+            if ((float)hits / total > 0.95f) {
+                return 0.0f;
+            }
         }
     }
 
     return 1.0f - (float)hits / total;
 }
+
 
 
 Vec3f RayTracer::computeLightColor(const Ray& ray, HitRec& hitRec, const Light* light, bool & shadow) {
