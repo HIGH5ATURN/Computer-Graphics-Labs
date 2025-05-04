@@ -57,7 +57,7 @@ void RayTracer::fireRays() {
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(0.0f, 1.0f);
 
-    ray.o = Vec3f(2.0f, 2.0f, 5.0f);
+    ray.o = Vec3f(-2.0f, 2.0f, 5.0f);
 
     for (int x = 0; x < this->image->getWidth(); x++) {
         for (int y = 0; y < this->image->getHeight(); y++) {
@@ -85,7 +85,7 @@ void RayTracer::fireRays() {
 #else
          
             ray.d = getEyeRayDirection(x, y);
-            Vec3f color = traceRay(ray, 3);  
+            Vec3f color = traceRay(ray, 5);  
             this->image->setPixel(x, y, color);
 #endif
         }

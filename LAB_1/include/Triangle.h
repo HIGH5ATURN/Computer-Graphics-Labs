@@ -9,11 +9,15 @@ public:
     Vec3f v0, v1, v2;
     Vec3f normal;
     const Material* material;
-
-    Triangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat) : v0(a), v1(b), v2(c), material(mat)
+    bool flipped;
+    Triangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat, bool flip) : 
+        v0(a), v1(b), v2(c), material(mat), flipped(flip=false)
     {
-        normal = ((v1 - v0).cross(v2 - v0)).getNormalized();
+        // Normal calculation from the cross product of two edges of the triangle
+        normal = ((v1 - v0).cross(v2 - v0)).normalize();
+
     }
+
 
     bool hit(const Ray& r, HitRec& rec) const;
     

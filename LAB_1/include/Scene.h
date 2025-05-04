@@ -34,8 +34,8 @@ public:
 		objects.push_back(plane);
 	}
 
-	void addTriangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat) {
-		Triangle* triangle = new Triangle(a, b, c, mat);
+	void addTriangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat,bool flip=false) {
+		Triangle* triangle = new Triangle(a, b, c, mat,flip);
 		objects.push_back(triangle);
 	}
 

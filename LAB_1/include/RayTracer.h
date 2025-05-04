@@ -63,9 +63,9 @@ public:
         this->scene->addPlane(pt,  n,  mat);
     }
 
-    void addTriangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat) {
+    void addTriangle(const Vec3f& a, const Vec3f& b, const Vec3f& c, const Material* mat,bool flip=false) {
        
-        this->scene->addTriangle(a, b, c, mat);
+        this->scene->addTriangle(a, b, c, mat,flip);
     }
 
      Vec3f randomInUnitSphere() {

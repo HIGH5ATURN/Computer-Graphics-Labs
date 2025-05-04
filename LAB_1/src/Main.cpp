@@ -9,7 +9,7 @@ RayTracer* initTracer(int width, int height)
 	RayTracer* rayTracer = new RayTracer(width, height);
 
 	//Green
-	rayTracer->addSphere(Vec3f(2.25f, -0.05f, -10.0f), 0.95f, new Material(
+	rayTracer->addSphere(Vec3f(1.25f, -0.05f, -10.0f), 0.95f, new Material(
 		Vec3f(0.0f, 0.1f, 0.0f),   // ambient
 		Vec3f(0.1f, 0.6f, 0.1f),   // diffuse
 		Vec3f(0.6f, 0.6f, 0.6f),   // specular
@@ -63,14 +63,16 @@ RayTracer* initTracer(int width, int height)
 		//Red Triangle
 	rayTracer->addTriangle(
 		Vec3f(-0.8f, -1.0f, -15.0f),
-		Vec3f(-2.5f, 1.4f, -15.0f),
 		Vec3f(-0.8f, 1.4f, -15.0f),
+		Vec3f(-2.5f, 1.4f, -15.0f),
+
 		new Material(
 			Vec3f(0.2f, 0.0f, 0.0f),
 			Vec3f(0.5f, 0.0f, 0.0f),
 			Vec3f(0.2f, 0.2f, 0.2f),
 			4000.0f,
-			0.85f)
+			0.85f),
+		true
 	);
 
 	//Green Triangle
@@ -84,6 +86,21 @@ RayTracer* initTracer(int width, int height)
 			4000.0f,
 			0.85f)
 	);
+	// Green Triangle 2 (beside the first one)
+//// Flipped Green Triangle
+//	rayTracer->addTriangle(
+//		Vec3f(-0.9f, -1.0f, -15.0f),  // Inverted X-coordinate
+//		Vec3f(-2.6f, 1.4f, -15.0f),   // Inverted X-coordinate
+//		Vec3f(-0.9f, 1.4f, -15.0f),   // Inverted X-coordinate
+//		new Material(Vec3f(0.0f, 0.2f, 0.0f),
+//			Vec3f(0.0f, 0.5f, 0.0f),
+//			Vec3f(0.2f, 0.2f, 0.2f),
+//			4000.0f,
+//			0.85f)
+//	);
+
+
+
 
 
 
@@ -130,7 +147,7 @@ RayTracer* initTracer(int width, int height)
 
 	// Main white light from the top-left (slightly soft shadow)
 	rayTracer->addLight(
-		Vec3f(-10.0f, 5.0f, 10.0f),
+		Vec3f(0.0f, 5.0f, 10.0f),
 		Vec3f(1.0f, 1.0f, 1.0f),
 		Vec3f(1.0f, 1.0f, 1.0f),
 		Vec3f(1.0f, 1.0f, 1.0f),
