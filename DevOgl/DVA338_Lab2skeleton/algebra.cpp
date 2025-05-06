@@ -94,24 +94,34 @@ void PrintMatrix(char const *name, Matrix a) {
 
 Vector SurfaceNormal(Vector a, Vector b, Vector c)
 {
-	return {0.80078125f,0.34765625f, 0.1796875f};
+	Vector v1 = Subtract(b, a);
+	Vector v2 = Subtract(c, a);
+	Vector n = CrossProduct(v1, v2);
+	n = Normalize(n);
+	return n;
 }
 
 
 Matrix Translation(Vector t) {
-	Matrix T;
+	Matrix T = { 0 };
 	T.e[0] = 1.0f; T.e[4] = 0.0f; T.e[8] = 0.0f; T.e[12] =t.x;
+
 	T.e[1] = 0.0f; T.e[5] = 1.0f; T.e[9] = 0.0f; T.e[13] = t.y;
+
 	T.e[2] = 0.0f; T.e[6] = 0.0f; T.e[10] = 1.0f; T.e[14] = t.z;
+
 	T.e[3] = 0.0f; T.e[7] = 0.0f; T.e[11] = 0.0f; T.e[15] = 1.0f;
 	return T;
 }
 
 Matrix Scaling(Vector s) {
-	Matrix S;
+	Matrix S = { 0 };
 	S.e[0] = s.x; S.e[4] = 0.0f; S.e[8] = 0.0f; S.e[12] = 0.0f;
+
 	S.e[1] = 0.0f; S.e[5] = s.y; S.e[9] = 0.0f; S.e[13] = 0.0f;
+
 	S.e[2] = 0.0f; S.e[6] = 0.0f; S.e[10] = s.z; S.e[14] = 0.0f;
+
 	S.e[3] = 0.0f; S.e[7] = 0.0f; S.e[11] = 0.0f; S.e[15] = 1.0f;
 	return S;
 }
@@ -119,10 +129,14 @@ Matrix Scaling(Vector s) {
 Matrix RotationX(float angle) {
 
 	angle = degToRad(angle);
-	Matrix R;
+	Matrix R = { 0 };
+
 	R.e[0] = 1.0f; R.e[4] = 0.0f; R.e[8] = 0.0f; R.e[12] = 0.0f;
+
 	R.e[1] = 0.0f; R.e[5] = cos(angle); R.e[9] = -sin(angle); R.e[13] = 0.0f;
+
 	R.e[2] = 0.0f; R.e[6] = sin(angle); R.e[10] = cos(angle); R.e[14] = 0.0f;
+
 	R.e[3] = 0.0f; R.e[7] = 0.0f; R.e[11] = 0.0f; R.e[15] = 1.0f;
 	return R;
 }
@@ -130,10 +144,14 @@ Matrix RotationY(float angle) {
 
 
 	angle = degToRad(angle);
-	Matrix R;
+	Matrix R = { 0 };
+
 	R.e[0] = cos(angle); R.e[4] = 0.0f; R.e[8] = sin(angle); R.e[12] = 0.0f;
+
 	R.e[1] = 0.0f; R.e[5] = 1.0f; R.e[9] = 0.0f; R.e[13] = 0.0f;
+
 	R.e[2] = -sin(angle); R.e[6] = 0.0f; R.e[10] = cos(angle); R.e[14] = 0.0f;
+
 	R.e[3] = 0.0f; R.e[7] = 0.0f; R.e[11] = 0.0f; R.e[15] = 1.0f;
 	return R;
 }
@@ -141,10 +159,15 @@ Matrix RotationZ(float angle) {
 
 
 	angle = degToRad(angle);
-	Matrix R;
+
+	Matrix R = { 0 };
+
 	R.e[0] = cos(angle); R.e[4] = -sin(angle); R.e[8] = 0.0f; R.e[12] = 0.0f;
+
 	R.e[1] = sin(angle); R.e[5] = cos(angle); R.e[9] = 0.0f; R.e[13] = 0.0f;
+
 	R.e[2] = 0.0f; R.e[6] = 0.0f; R.e[10] = 1.0f; R.e[14] = 0.0f;
+
 	R.e[3] = 0.0f; R.e[7] = 0.0f; R.e[11] = 0.0f; R.e[15] = 1.0f;
 	return R;
 }

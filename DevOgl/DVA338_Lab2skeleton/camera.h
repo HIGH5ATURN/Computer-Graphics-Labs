@@ -8,12 +8,22 @@ typedef struct _Camera {
 	double fov; 
 	double nearPlane; 
 	double farPlane; 
+	bool isOrtho = false;
 } Camera;
 
 Matrix PerspectiveProjectionMatrix(
 	Camera cam, 
 	int screenWidth, 
-	int screenHeight);
+	int screenHeight
+);
 Matrix ViewMatrix(Camera cam);
 
+Matrix OrthogonalProjectionMatrix(
+	float left, 
+	float right, 
+	float top, 
+	float bottom, 
+	float near, 
+	float far
+);
 #endif

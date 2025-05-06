@@ -18,7 +18,7 @@
 #include "shaders.h"
 #include "mesh.h"
 #define M_PI       3.14159265358979323846
-Camera cam = {{-5,-5,20}, {-10,-30,-45}, 60, 1, 10000}; // Setup the global camera parameters
+Camera cam = {{0,0,20}, {0,0,0}, 60, 1, 10000}; // Setup the global camera parameters
 
 int screen_width = 1024;
 int screen_height = 768;
@@ -51,6 +51,7 @@ void prepareShaderProgram(const char ** vs_src, const char ** fs_src) {
 	GLint success = GL_FALSE;
 
 	shprg = glCreateProgram();
+	glEnable(GL_DEPTH_TEST);
 
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vs, 1, vs_src, NULL);
@@ -127,9 +128,9 @@ void renderMesh(Mesh *mesh) {
 
 	// Local transformations
 	Matrix S = Scaling({ mesh->scale.x, mesh->scale.y, mesh->scale.z });
-	Matrix R = RotationX(mesh->rotation.x);
-	R = MatMatMul(R, RotationY(mesh->rotation.y));
-	R = MatMatMul(R, RotationZ(mesh->rotation.z));
+	Matrix R = RotationZ(mesh->rotation.z);
+	R = MatMatMul(RotationY(mesh->rotation.y),R);
+	R = MatMatMul(RotationX(mesh->rotation.x),R);
 	Matrix T = Translation({ mesh->translation.x, mesh->translation.y, mesh->translation.z });
 	Matrix W = MatMatMul(T, MatMatMul(R, S));
 	Matrix M = MatMatMul(V, W);
@@ -144,7 +145,7 @@ void renderMesh(Mesh *mesh) {
 	glBindVertexArray(mesh->vao);
 	
 	// To accomplish wireframe rendering (can be removed to get filled triangles)
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); 
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); 
 
 	// Draw all triangles
 	glDrawElements(GL_TRIANGLES, mesh->nt * 3, GL_UNSIGNED_INT, NULL); 
@@ -155,7 +156,8 @@ void renderMesh(Mesh *mesh) {
 
 void display(void) {
 	Mesh *mesh;
-	glClear(GL_COLOR_BUFFER_BIT);	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
 	/*
 	Assignment TODO: The implementation of the View- and ProjectionMatrix functions in camera.cpp 
@@ -163,7 +165,12 @@ void display(void) {
 	*/
 	V = ViewMatrix(cam);
 	
-	P = PerspectiveProjectionMatrix(cam, screen_width, screen_height);
+	if (cam.isOrtho) {
+		P = OrthogonalProjectionMatrix(-20, 20, 10, -10, 1, 1000);
+	}
+	else {
+		P = PerspectiveProjectionMatrix(cam, screen_width, screen_height);
+	}
 	
 	// This finds the combined view-projection matrix
 	PV = MatMatMul(P, V);
@@ -191,24 +198,24 @@ void changeSize(int w, int h) {
 void cleanUp(void);
 void keypress(unsigned char key, int x, int y) {
 	float step = 0.2f;
-	float angleStep = 5.0f * M_PI / 180.0f;
+	float angleStep = 20.0f * (float) M_PI / 180.0f;
 	switch (key) {
-		// Camera movement
+	// Camera movement
 	case 'x': cam.position.x -= step; break;
 	case 'X': cam.position.x += step; break;
 	case 'y': cam.position.y -= step; break;
 	case 'Y': cam.position.y += step; break;
 	case 'z': cam.position.z -= step; break;
 	case 'Z': cam.position.z += step; break;
-		// Camera rotation
+	// Camera rotation
 	case 'i': cam.rotation.x -= angleStep; break;
 	case 'I': cam.rotation.x += angleStep; break;
 	case 'j': cam.rotation.y -= angleStep; break;
 	case 'J': cam.rotation.y += angleStep; break;
 	case 'k': cam.rotation.z -= angleStep; break;
 	case 'K': cam.rotation.z += angleStep; break;
-		// Toggle projection
-	//case 'p': cam.isOrtho = !cam.isOrtho; break;
+	// Toggle projection
+	case 'p': cam.isOrtho = !cam.isOrtho; break;
 	}
 	glutPostRedisplay();
 }
@@ -253,7 +260,8 @@ int main(int argc, char **argv) {
 	//cam.rotation.y = degToRad(cam.rotation.y);
 	//cam.rotation.z = degToRad(cam.rotation.z);
 	// Setup freeGLUT
-	unsigned int _glut_mode = GLUT_SINGLE | GLUT_RGB;
+	unsigned int _glut_mode = GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH;
+
 	#ifdef __APPLE__
 	_glut_mode |= GLUT_3_2_CORE_PROFILE;
 	#endif
@@ -283,14 +291,29 @@ int main(int argc, char **argv) {
 
 	// Insert the 3D models you want in your scene here in a linked list of meshes
 	// Note that "meshList" is a pointer to the first mesh and new meshes are added to the front of the list	
-	insertModel(&meshList, cow.nov, cow.verts, cow.nof, cow.faces, 20.0);
-	insertModel(&meshList, triceratops.nov, triceratops.verts, triceratops.nof, triceratops.faces, 3.0);
+	//insertModel(&meshList, cow.nov, cow.verts, cow.nof, cow.faces, 20.0);
+	// 
+	// insertModel(&meshList, cow.nov, cow.verts, cow.nof, cow.faces, 20.0);
+	//meshList->translation = { 0, 1.5, -8 };
+	//meshList->rotation = { 0, -90, 0 };
+	//meshList->scale = { 1, 1, 1 };
+
+	//insertModel(&meshList, triceratops.nov, triceratops.verts, triceratops.nof, triceratops.faces, 3.0);
+	//meshList->translation = { -6.8, 0.8, 5 };
+	//meshList->rotation = { 0, 0, 0 };
+	//meshList->scale = { 0.1, 0.1, 0.1 };
+
+	
 	//insertModel(&meshList, bunny.nov, bunny.verts, bunny.nof, bunny.faces, 60.0);	
 	//insertModel(&meshList, cube.nov, cube.verts, cube.nof, cube.faces, 5.0);
 	//insertModel(&meshList, frog.nov, frog.verts, frog.nof, frog.faces, 2.5);
-	//insertModel(&meshList, knot.nov, knot.verts, knot.nof, knot.faces, 1.0);
+	insertModel(&meshList, knot.nov, knot.verts, knot.nof, knot.faces, 1.0);
 	//insertModel(&meshList, sphere.nov, sphere.verts, sphere.nof, sphere.faces, 12.0);
+
 	//insertModel(&meshList, teapot.nov, teapot.verts, teapot.nof, teapot.faces, 3.0);
+	//meshList->translation = { 0, -7, 0 };
+	//meshList->rotation = { -90, 0, 180 };
+	//meshList->scale = { 1, 1, 1 };
 
 	init();
 	glutMainLoop();

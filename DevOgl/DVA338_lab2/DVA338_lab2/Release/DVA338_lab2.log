@@ -1,8 +1,7 @@
 ﻿  main.cpp
-D:\cfg_LAB\Computer Graphics\DevOgl\DVA338_Lab2skeleton\main.cpp(194,18): warning C4305: 'initializing': truncation from 'double' to 'float'
   Generating code
-  0 of 26 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 33 functions ( 3.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   DVA338_lab2.vcxproj -> D:\cfg_LAB\Computer Graphics\DevOgl\DVA338_lab2\Release\DVA338_lab2.exe

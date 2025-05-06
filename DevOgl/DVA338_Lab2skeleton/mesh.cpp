@@ -34,10 +34,34 @@ void insertModel(Mesh** list, int nv, float* vArr, int nt, int* tArr, float scal
 	// Replace the code below that simply sets some arbitrary normal values	
 	// Hint: You need to fix the implementation of the SurfaceNormal function
 	// and use that for normal calculations.
-	Vector ___tmp = {0.80078125f, 0.34765625f, 0.1796875f};
-	for (int i = 0; i < nv; i++) {
-		mesh->vnorms[i] = ___tmp;
+
+	for (int i = 0; i < nt; i++) {
+		Triangle t = mesh->triangles[i];
+
+		Vector x = mesh->vertices[t.vInds[0]];
+
+		Vector y = mesh->vertices[t.vInds[1]];
+
+		Vector z = mesh->vertices[t.vInds[2]];
+
+		Vector n = SurfaceNormal(x, y, z);
+
+		for (int j = 0; j < 3; j++) {
+
+			mesh->vnorms[t.vInds[j]] = Add(mesh->vnorms[t.vInds[j]],n);
+		}
+
 	}
+
+	for (int i = 0; i < nv; i++) {
+		mesh->vnorms[i] = Normalize(mesh->vnorms[i]);
+	}
+
+
+
+
 	mesh->next = *list;
 	*list = mesh;
+
+	
 }

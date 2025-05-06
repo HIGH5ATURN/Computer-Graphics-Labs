@@ -1,0 +1,29 @@
+﻿  algebra.cpp
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(26,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(136,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(136,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(138,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(138,51): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(149,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(149,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(153,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(153,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(165,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(165,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(167,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(167,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(188,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\algebra.cpp(189,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  camera.cpp
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\camera.cpp(17,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\camera.cpp(19,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\camera.cpp(21,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2skeleton\camera.cpp(23,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+  mesh.cpp
+  Generating code
+  6 of 47 functions (12.8%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    14 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  DVA338_Lab2_part1_xtra.vcxproj -> D:\cfg_LAB\Computer Graphics\Lab2_PART_1_xtra\DevOgl\DVA338_Lab2_part1_xtra\Release\DVA338_Lab2_part1_xtra.exe

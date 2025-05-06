@@ -3,22 +3,25 @@
   "WorkspaceRootPath": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_lab2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\algebra.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\algebra.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\algebra.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9E2C7EF-F065-4842-983C-6597B491C8DF}|DVA338_lab2.vcxproj|D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,20 +31,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "camera.h",
+              "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\camera.h",
+              "RelativeDocumentMoniker": "..\\DVA338_Lab2skeleton\\camera.h",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\camera.h",
+              "RelativeToolTip": "..\\DVA338_Lab2skeleton\\camera.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T22:15:37.574Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "mesh.h",
               "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\mesh.h",
               "RelativeDocumentMoniker": "..\\DVA338_Lab2skeleton\\mesh.h",
               "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\mesh.h",
               "RelativeToolTip": "..\\DVA338_Lab2skeleton\\mesh.h",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAjwBkAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAYwBkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-03T22:06:04.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T22:06:04.028Z"
             },
             {
               "$type": "Document",
@@ -51,70 +69,58 @@
               "RelativeDocumentMoniker": "..\\DVA338_Lab2skeleton\\algebra.h",
               "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\algebra.h",
               "RelativeToolTip": "..\\DVA338_Lab2skeleton\\algebra.h",
-              "ViewState": "AgIAACQAAAAAAAAAAAAjwDEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAowCMAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-03T21:57:34.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "WhenOpened": "2025-05-03T21:57:34.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "camera.cpp",
               "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\camera.cpp",
               "RelativeDocumentMoniker": "..\\DVA338_Lab2skeleton\\camera.cpp",
               "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\camera.cpp",
               "RelativeToolTip": "..\\DVA338_Lab2skeleton\\camera.cpp",
-              "ViewState": "AgIAABIAAAAAAAAAAADwvx4AAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-03T21:57:25.685Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "mesh.cpp",
               "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\mesh.cpp",
               "RelativeDocumentMoniker": "..\\DVA338_Lab2skeleton\\mesh.cpp",
               "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\mesh.cpp",
               "RelativeToolTip": "..\\DVA338_Lab2skeleton\\mesh.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwDgAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-03T21:57:24.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T21:57:24.282Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "algebra.cpp",
               "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\algebra.cpp",
               "RelativeDocumentMoniker": "..\\DVA338_Lab2skeleton\\algebra.cpp",
               "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\algebra.cpp",
               "RelativeToolTip": "..\\DVA338_Lab2skeleton\\algebra.cpp",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAAAH0AAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAmwJIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-03T21:57:18.042Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T21:57:18.042Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "main.cpp",
               "DocumentMoniker": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\main.cpp",
               "RelativeDocumentMoniker": "..\\DVA338_Lab2skeleton\\main.cpp",
-              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\main.cpp*",
-              "RelativeToolTip": "..\\DVA338_Lab2skeleton\\main.cpp*",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
+              "ToolTip": "D:\\cfg_LAB\\Computer Graphics\\DevOgl\\DVA338_Lab2skeleton\\main.cpp",
+              "RelativeToolTip": "..\\DVA338_Lab2skeleton\\main.cpp",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAIwMsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-03T21:57:12.537Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T21:57:12.537Z"
             }
           ]
         }
